@@ -10,6 +10,7 @@ __pycache__
 venv
 .vscode
 .idea
+.spyproject
 
 # Docs
 /docs/_build
