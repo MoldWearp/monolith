@@ -27,13 +27,13 @@ class VKPipeline:
     async def process_item(self, item, spider):
         match spider.name:
             case "UsersByGroup":
-                kafka.publish_message("RawId",json.dumps(item, default=json_util.default))
+                kafka.publish_message("RawId", json.dumps(item, default=json_util.default))
                 # UsersByGroupCollection.insert_one(item)
             case "VKFriends":
                 kafka.publish_message("VkFriends", json.dumps(item, default=json_util.default))
                 # VKFriendsCollection.insert_one(item)
             case "VKGroupsByUser":
-                kafka.publish_message("RawId", json.dumps(item, default=json_util.default))
+                kafka.publish_message("GroupsByUser", json.dumps(item, default=json_util.default))
                 # VKGroupsByUserCollection.insert_one(item)
             case "VKUser":
                 kafka.publish_message("VKUser", json.dumps(item, default=json_util.default))

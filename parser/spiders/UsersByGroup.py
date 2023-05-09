@@ -35,5 +35,5 @@ class UserSpider(scrapy.Spider):
     def parse(self, response, **kwargs):
         self.log(f"parse users of {self.group_id} group")
         users = json.loads(response.text)['response']
-        users["group_id"] = self.group_id
+        users["id"] = self.group_id
         yield users
