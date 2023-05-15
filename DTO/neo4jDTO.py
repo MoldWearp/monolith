@@ -71,16 +71,25 @@ class Neo4jManager:
         return 0
 
     def create_friends_relation(self, user_id, friends_id):
-        try:
-            logging.info(f"Transfers friends of {user_id}")
-            query = "MERGE (a:Person { id: $user_id })" \
-                    "MERGE (b:Person { id: $friend_id })" \
-                    "CREATE (a)-[:FRIENDS]->(b)"
-            for friend_id in friends_id:
-                response = self.query(query, {"user_id": user_id, "friend_id": friend_id})
-        except Exception as e:
-            logging.error(f"There is an error at {user_id} user_id, err={e}")
+        logging.info(f"Create the the friend's relation of {user_id}")
+        query = "MERGE (a:Person { id: $user_id })" \
+                "MERGE (b:Person { id: $friend_id })" \
+                "CREATE (a)-[:Friend]->(b)"
 
+        for friend_id in friends_id:
+            try:
+                self.query(query, {"user_id": user_id, "friend_id": friend_id})
+            except Exception as e:
+                logging.error(f"There is error at {user_id} user_ud with {friend_id} friend_id, err={e}")
 
+    def create_group_relation(self, user_id, groups_id):
+        logging.info(f"Create the the group's relation of {user_id}")
+        query = "MERGE (a:Person { id: $user_id })" \
+                "MERGE (b:Group { id: $group_id })" \
+                "CREATE (a)-[:Group]->(b)"
 
-
+        for group_id in groups_id:
+            try:
+                self.query(query, {"user_id": user_id, "group_id": group_id})
+            except Exception as e:
+                logging.error(f"There is error at {group_id} group_id with {user_id} user_id, err={e}")

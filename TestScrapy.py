@@ -34,12 +34,12 @@ messages = kafka.read_messages("RawId")
 
 # VKGroupsByUser
 
-# task = scrapyd.schedule('default', 'VKGroupsByUser',
-#                         settings=settings,
-#                         user=1,
-#                         #group_fields=,
-#                         #group_extended=,
-#                         )
+task = scrapyd.schedule('default', 'VKGroupsByUser',
+                        settings=settings,
+                        user=20959,
+                        #group_fields=,
+                        #group_extended=,
+                        )
 
 
 # UsersByGroup
